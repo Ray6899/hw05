@@ -26,7 +26,7 @@ std::mutex login_mtx;
 
 // 作业要求1：把这些函数变成多线程安全的
 // 提示：能正确利用 shared_mutex 加分，用 lock_guard 系列加分
-bool do_register(std::string username, std::string password, std::string school, std::string phone) {
+std::string do_register(std::string username, std::string password, std::string school, std::string phone) {
     User user = {password, school, phone};
     auto grd=std::unique_lock<std::mutex>{users_mtx};
     if (users.emplace(username, user).second)
